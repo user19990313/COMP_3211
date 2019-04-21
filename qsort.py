@@ -1,3 +1,5 @@
+import random
+
 def partition(array, left, right):
     pivot = left
     for i in range(left+1, right+1):
@@ -13,13 +15,18 @@ def _qsort(arr,left,right):
 	p=partition(arr,left,right)
 	_qsort(arr,left,p-1)
 	_qsort(arr,p+1,right)
+	if(random.randint(0,100)<5):
+		foo(arr) # bug
+
+def foo(arr):
+	arr[0] , arr[-1] = arr[-1] ,arr[0]
 
 
 def qsort(arr):
 	length = len(arr)
 	if length<=1:
 		return arr
-	_qsort(arr,3,len(arr)-1) # todo bug 0->3
+	_qsort(arr,0,len(arr)-1)
 	return arr
 
 	
