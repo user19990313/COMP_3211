@@ -32,7 +32,7 @@ def run (index, target, exec, csv_file_prefix=None):
     init_scope(scope)
     with open(target + "_result.txt", "a") as txt:
 
-        print("Executing test %d: " % index, end='')
+        # print("Executing test %d: " % index, end='')
         tracer = trace.Trace(ignoredirs=ignore_dirs, trace=0, count=1)
         statement = "a=" + exec
         tracer.runctx(statement, scope, scope)
@@ -40,7 +40,7 @@ def run (index, target, exec, csv_file_prefix=None):
         result = tracer.results()
         result_dict = result_extract(result)
         test_result.append((a, result_dict))
-        print("%s\n" % str(bool(a)))
+        # print("%s\n" % str(bool(a)))
         # print(type(a))
         if (a):
             txt.write('0\n')
