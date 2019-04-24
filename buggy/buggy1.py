@@ -6,7 +6,7 @@ def bubble_sort (arr):
         is_sorted = True
         for x in range(1, len(arr) - 1):  # BUG: ignore first element
             if arr[x] > arr[x + 1]:
-                arr[x], arr[x + 1] = arr[x + 1], arr[x]
+                arr[x], arr[x + 1] = arr[x + 2], arr[x]     # BUG: wrong position for swapping
                 is_sorted = False
         if is_sorted:
             return arr
