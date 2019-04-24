@@ -14,18 +14,18 @@ ignore_dirs = [sys.prefix, sys.exec_prefix, libdir, libdir + "64"]
 init_list = []
 
 
-def init_env(init_cmd_list):
+def init_env (init_cmd_list):
     for statement in init_cmd_list:
         init_list.append(statement)
 
 
-def init_scope(scope):
+def init_scope (scope):
     for statement in init_list:
         exec(statement, scope)
     return scope
 
 
-def run(index, target, exec, csv_file_prefix=None):
+def run (index, target, exec, csv_file_prefix=None):
     a = False
     test_result = []
     scope = {}
@@ -36,12 +36,12 @@ def run(index, target, exec, csv_file_prefix=None):
         tracer = trace.Trace(ignoredirs=ignore_dirs, trace=0, count=1)
         statement = "a=" + exec
         tracer.runctx(statement, scope, scope)
-        a = scope["a"];
+        a = scope["a"]
         result = tracer.results()
         result_dict = result_extract(result)
         test_result.append((a, result_dict))
         print("%s\n" % str(bool(a)))
-        #print(type(a))
+        # print(type(a))
         if (a):
             txt.write('0\n')
         else:
@@ -53,7 +53,7 @@ def run(index, target, exec, csv_file_prefix=None):
     return test_result
 
 
-def result_extract(res):
+def result_extract (res):
     per_file = {}
     result_dict = {}
     for filename, lineno in res.counts:
@@ -69,7 +69,7 @@ def result_extract(res):
     return result_dict
 
 
-def assemble_data(lines, lines_hit):
+def assemble_data (lines, lines_hit):
     result_list = []
     for lineno, line in enumerate(lines, 1):
         if lineno in lines_hit:
@@ -80,20 +80,21 @@ def assemble_data(lines, lines_hit):
     return result_list
 
 
-def export_to_csv(csvname, result_list):
+def export_to_csv (csvname, result_list):
     row = [x for index, (x, line) in enumerate(result_list)]
-    #print(row)
+    # print(row)
     with open(csvname, 'a', newline='') as csvfile:
         (csv.writer(csvfile)).writerow(row)
 
 
-def run_loader(test_py_file,test_func_name,target_name,test_time):
-    init_env(["import "+test_py_file])
+def run_loader (test_py_file, test_func_name, target_name, test_time):
+    init_env(["import " + test_py_file])
     for i in range(test_time):
-        run(i,target_name,test_py_file+"."+test_func_name,target_name)
+        run(i, target_name, test_py_file + "." + test_func_name, target_name)
+
 
 if __name__ == '__main__':
-    run_loader("test_sort","check()","qsort",500)
+    run_loader("test_sort", "check()", "buggy_sort", 500)
 
-    #init_env(["import test_sort"]);
-    #run(['test_sort.check()',         'test_sort.check()',         'test_sort.check()'], "qsort")
+    # init_env(["import test_sort"]);
+    # run(['test_sort.check()',         'test_sort.check()',         'test_sort.check()'], "qsort")
