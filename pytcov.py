@@ -94,7 +94,7 @@ def run_loader (test_py_file, test_func_name, target_name, test_time):
 
 
 if __name__ == '__main__':
-    run_loader("test_sort", "check()", "buggy_sort", 500)
+    run_loader("test_sort", "check1()", "buggy_sort", 500)
 
     # init_env(["import test_sort"]);
     # run(['test_sort.check()',         'test_sort.check()',         'test_sort.check()'], "qsort")

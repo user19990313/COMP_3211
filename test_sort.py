@@ -1,5 +1,9 @@
-import qsort
-import buggy
+from buggy import buggy1
+from buggy import buggy2
+from buggy import buggy3
+from buggy import buggy4
+from buggy import buggy5
+from buggy import buggy6
 import random
 
 
@@ -10,10 +14,30 @@ def gen_arr(size, rangement):
     return sol
 
 
-def check():
+def check1():
     # arr = gen_arr(50, 10)
     # qsort.qsort(arr)
-    return _checkfun(buggy.buggy_sort(gen_arr(50, 10)))
+    return _checkfun(buggy1.buggy_sort(gen_arr(50, 10)))
+
+
+def check2():
+    return _checkfun(buggy2.buggy_sort(gen_arr(50, 10)))
+
+
+def check3():
+    return _checkfun(buggy3.buggy_sort(gen_arr(50, 10)))
+
+
+def check4():
+    return _checkfun(buggy4.buggy_sort(gen_arr(50, 10)))
+
+
+def check5():
+    return _checkfun(buggy5.buggy_sort(gen_arr(50, 10)))
+
+
+def check6():
+    return _checkfun(buggy6.buggy_sort(gen_arr(50, 10)))
 
 
 def _checkfun(arr):
