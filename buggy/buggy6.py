@@ -4,7 +4,7 @@ import random
 def bubble_sort (arr):
     while True:
         is_sorted = True
-        for x in range(1, len(arr) - 1):
+        for x in range(0, len(arr) - 1):
             if arr[x] > arr[x + 1]:
                 arr[x], arr[x + 1] = arr[x + 1], arr[x]
                 is_sorted = False
@@ -16,9 +16,9 @@ def partition (arr, left, right):
     pivot = left
     for i in range(left + 1, right + 1):
         if arr[i] <= arr[left]:
-            pivot += 2  # BUG: WRONG STEP
+            pivot += 1
             arr[i], arr[pivot] = arr[pivot], arr[i]
-    arr[pivot], arr[left] = arr[left], arr[pivot]
+    arr[pivot], arr[left] = arr[right], arr[pivot]  # BUG: WRONG VARIABLE USED
     return pivot
 
 

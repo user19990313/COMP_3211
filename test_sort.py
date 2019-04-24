@@ -48,7 +48,7 @@ def _checkfun(arr):
 
 
 if __name__ == "__main__":
-    if check():
+    if check1():
         print("true")
     else:
         print("false")

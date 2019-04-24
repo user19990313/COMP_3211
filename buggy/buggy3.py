@@ -26,7 +26,7 @@ def _qsort (arr, left, right):
     if left >= right:
         return
     p = partition(arr, left, right)
-    _qsort(arr, left, p)    # BUG: RIGHT BOUND WRONG
+    _qsort(arr, left, p - 2)    # BUG: RIGHT BOUND WRONG
     _qsort(arr, p + 1, right)
 
 

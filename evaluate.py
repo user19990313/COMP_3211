@@ -17,12 +17,10 @@ def _get_score (result, total_line_num, buggy_lines):
 
 
 def _get_total_lines (filename):
-    non_blank_count = 0
-    with open(filename) as infp:
-        for line in infp:
-            if line.strip():
-                non_blank_count += 1
-    return non_blank_count
+    with open(filename) as f:
+        for i, l in enumerate(f):
+            pass
+    return i + 1
 
 
 def run (prog_filename, cov_filename, result_filename, buggy_lines):
@@ -41,23 +39,23 @@ if __name__ == '__main__':
     overall_plots.append(result)
 
     pytcov.run_loader("test_sort", "check2()", "buggy2_sort", 500)
-    result = run("buggy2.py", "buggy2_sort_buggy2.py.csv", "buggy2_sort_result.txt", [7])
+    result = run("buggy/buggy2.py", "buggy2_sort_buggy2.py.csv", "buggy2_sort_result.txt", [18])
     overall_plots.append(result)
 
     pytcov.run_loader("test_sort", "check3()", "buggy3_sort", 500)
-    result = run("buggy3.py", "buggy3_sort_buggy3.py.csv", "buggy3_sort_result.txt", [7])
+    result = run("buggy/buggy3.py", "buggy3_sort_buggy3.py.csv", "buggy3_sort_result.txt", [29])
     overall_plots.append(result)
 
     pytcov.run_loader("test_sort", "check4()", "buggy4_sort", 500)
-    result = run("buggy4.py", "buggy4_sort_buggy4.py.csv", "buggy4_sort_result.txt", [7])
+    result = run("buggy/buggy4.py", "buggy4_sort_buggy4.py.csv", "buggy4_sort_result.txt", [48])
     overall_plots.append(result)
 
     pytcov.run_loader("test_sort", "check5()", "buggy5_sort", 500)
-    result = run("buggy5.py", "buggy5_sort_buggy5.py.csv", "buggy5_sort_result.txt", [7])
+    result = run("buggy/buggy5.py", "buggy5_sort_buggy5.py.csv", "buggy5_sort_result.txt", [57])
     overall_plots.append(result)
 
     pytcov.run_loader("test_sort", "check6()", "buggy6_sort", 500)
-    result = run("buggy6.py", "buggy6_sort_buggy6.py.csv", "buggy6_sort_result.txt", [7])
+    result = run("buggy/buggy6.py", "buggy6_sort_buggy6.py.csv", "buggy6_sort_result.txt", [21])
     overall_plots.append(result)
 
     print(overall_plots)
