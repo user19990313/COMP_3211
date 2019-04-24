@@ -5,20 +5,21 @@ import matplotlib.pyplot as plt
 # check gpu
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-
-def BPNN(x,y,step=5000,rate=0.01,debug=False):
+def BPNNS(x,y,step=5000,rate=0.01,debug=False):
     # process data [>0 => 1, 0 => 0]
     x_train = np.float32(x > 0)
     y_train = y  # false 1 ; true 0
     # set size
-    n_in, n_h, n_out, batch_size = len(x_train[0]), 3, 1, len(x_train)
+    n_in, n_h, n_out, batch_size = len(x_train[0]), 5, 1, len(x_train)
     # using GPU
     x_train = torch.tensor(x_train).cuda()
     y_train = torch.tensor(y_train.T).cuda()
     # design model
     model = nn.Sequential(nn.Linear(n_in, n_h),
                           nn.Sigmoid(),
-                          nn.Linear(n_h, n_out),
+                          nn.Linear(n_h, n_h),
+                          nn.Sigmoid(),
+                          nn.Linear(n_h,n_out),
                           nn.Sigmoid()).cuda()
     # loss
     criterion = torch.nn.MSELoss()
@@ -81,4 +82,4 @@ if __name__ == '__main__':
     temp_x = np.loadtxt("buggy_sort_buggy.py.csv",dtype=np.float32, delimiter=",")
     temp_y = np.loadtxt("buggy_sort_result.txt",dtype=np.float32, delimiter=",")
 
-    print(BPNN(temp_x,temp_y))
+    print(BPNNS(temp_x,temp_y))
