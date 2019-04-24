@@ -1,4 +1,5 @@
 import qsort
+import buggy
 import random
 
 
@@ -10,9 +11,9 @@ def gen_arr(size, rangement):
 
 
 def check():
-    arr = gen_arr(50, 10)
-    qsort.qsort(arr)
-    return _checkfun(arr)
+    # arr = gen_arr(50, 10)
+    # qsort.qsort(arr)
+    return _checkfun(buggy.buggy_sort(gen_arr(50, 10)))
 
 
 def _checkfun(arr):

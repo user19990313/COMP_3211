@@ -6,7 +6,7 @@ def bubble_sort (arr):
         is_sorted = True
         for x in range(1, len(arr) - 1):  # BUG: ignore first element
             if arr[x] > arr[x + 1]:
-                arr[x], arr[x + 1] = arr[x + 2], arr[x]     # BUG: wrong position for swapping
+                arr[x], arr[x + 1] = arr[x + 1], arr[x]
                 is_sorted = False
         if is_sorted:
             return arr
@@ -96,16 +96,17 @@ def _sort(arr, number):
     elif number == 4: return insertion_sort(arr)
 
 
-def sort(arr):
+def buggy_sort(arr):
     algorithms = random.sample([1, 2, 3, 4], 2)
     arr1 = _sort(arr[:len(arr) // 2], algorithms[0])
     arr2 = _sort(arr[len(arr) // 2:], algorithms[1])
     return merge(arr1, arr2)
 
 
-count = 0
-for x in range(0, 100):
-    array = sort(get_random_array())
-    if if_sorted(array):
-        count += 1
-print("Success: " + str(count) + " / 100")
+if __name__ == "__main__":
+    count = 0
+    for x in range(0, 100):
+        array = buggy_sort(get_random_array())
+        if if_sorted(array):
+            count += 1
+    print("Success: " + str(count) + " / 100")
