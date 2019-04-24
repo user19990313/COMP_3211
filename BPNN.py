@@ -2,9 +2,15 @@ import torch
 import torch.nn as nn
 import numpy as np
 import matplotlib.pyplot as plt
+
 # check gpu
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
+def run(cov_filename, result_filename):
+    # print(torch.__version__)
+    temp_x = np.loadtxt(cov_filename, dtype=np.float32, delimiter=",")
+    temp_y = np.loadtxt(result_filename, dtype=np.float32, delimiter=",")
+    BPNN(temp_X, temp_y)
 
 def BPNN(x,y,step=5000,rate=0.01,debug=False):
     # process data [>0 => 1, 0 => 0]
@@ -62,11 +68,12 @@ def BPNN(x,y,step=5000,rate=0.01,debug=False):
     for i in range(batch_size):
         if (y_train[i] == 1):
             s_f = np.multiply(s_f, x_train[i])
-
     # test fail line
     model.eval()
     result = []
     for i in range(n_in):
+
+
         if (s_f[i] == 1):
             test = torch.tensor(np.float32([0] * n_in))
             test[i] = 1
@@ -76,9 +83,5 @@ def BPNN(x,y,step=5000,rate=0.01,debug=False):
 
 
 if __name__ == '__main__':
-
-    #print(torch.__version__)
-    temp_x = np.loadtxt("buggy_sort_buggy.py.csv",dtype=np.float32, delimiter=",")
-    temp_y = np.loadtxt("buggy_sort_result.txt",dtype=np.float32, delimiter=",")
-
-    print(BPNN(temp_x,temp_y))
+    result = run("buggy_sort_buggy.py.csv", "buggy_sort_result.txt")
+    print(result)

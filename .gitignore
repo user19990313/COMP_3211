@@ -7,3 +7,7 @@
 *.iml
 out
 gen
+
+*.py.csv
+*_result.txt
+__pycache__/
