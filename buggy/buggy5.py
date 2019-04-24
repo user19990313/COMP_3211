@@ -54,8 +54,8 @@ def insertion_sort (arr):
         j = i - 1
         while j >= 0 and key < arr[j]:
             arr[j + 1] = arr[j]
-            j -= 2      # BUG: WRONG STEP
-        arr[j + 1] = key
+            j -= 1
+        arr[j] = key      # BUG: WRONG POSITION
     return arr
 
 

@@ -15,7 +15,7 @@ def bubble_sort (arr):
 def partition (arr, left, right):
     pivot = left
     for i in range(left + 1, right + 1):
-        if arr[i] < arr[left]:    # BUG: COMPARE WRONG
+        if arr[i] <= arr[left] - 20:    # BUG: EXTRA FACTOR
             pivot += 1
             arr[i], arr[pivot] = arr[pivot], arr[i]
     arr[pivot], arr[left] = arr[left], arr[pivot]
